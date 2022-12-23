@@ -19,6 +19,7 @@ public:
     void read();
     void copy();
     void replace();
+    int string_inside(std::string haystack, std::string needle);
     ~NotSet();
 }
 
