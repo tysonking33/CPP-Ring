@@ -73,7 +73,10 @@ void Phonebook::SEARCH(){
 
 }
 void Phonebook::EXIT(){
-    delete contact_arr;
+	for (int i = 0; i < 8; i++)
+	{
+		delete contact_arr[1];
+	}
 }
 
 Phonebook::~Phonebook(){}
