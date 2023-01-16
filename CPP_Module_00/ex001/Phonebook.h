@@ -1,17 +1,19 @@
 #ifndef PHONEBOOK_H
 #define PHONEBOOK_H
 
-#include "Contacts.h"
-
+#include "Contact.h"
 class Phonebook{
-public:
-    Contact *contact_arr[8];
-    int curr_contact;
-    Phonebook();
-    void ADD();
-    void SEARCH();
-    void EXIT();
-    ~Phonebook();
+	public:
+		Contact PB[8];
+		int curr_con_nbr;
+		Phonebook();
+		void ADD();
+		void SEARCH();
+		void EXIT();
+		void addPn();
+		void printPB();
+		~Phonebook();
 };
 
 #endif
+

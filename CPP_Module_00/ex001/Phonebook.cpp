@@ -1,82 +1,71 @@
 #include "Phonebook.h"
 
 Phonebook::Phonebook(){
-    curr_contact = 0;
+	curr_con_nbr = 0;
 }
 
 void Phonebook::ADD(){
-    curr_contact = curr_contact % 8;
-    Contact *new_contact = new Contact();
-    std::cout << "Enter first name\n";
-    std::cin >> new_contact->first_name;
-    if ((new_contact->first_name).length() > 10){
-        new_contact->short_first_name = (new_contact->first_name).substr(0, 9);
-        new_contact->short_first_name[10] = ".";
-    }
-    else {
-        new_contact->short_first_name = new_contact->first_name;
-    }
+	if (curr_con_nbr > 7)
+		curr_con_nbr = curr_con_nbr - 6;
 
-    std::cout << "Enter last name\n";
-    std::cin >> new_contact->last_name;
-    if ((new_contact->last_name).length() > 10){
-        new_contact->short_last_name = (new_contact->last_name).substr(0, 9);
-        new_contact->short_last_name[10] = ".";
-    }
-    else {
-        new_contact->short_last_name = new_contact->last_name;
-    }
-    
-    std::cout << "Enter nickname\n";
-    std::cin >> new_contact->nickname;
-    if ((new_contact->nickname).length() > 10){
-        new_contact->short_nickname = (new_contact->nickname).substr(0, 9);
-        new_contact->short_nickname[10] = ".";
-    }
-    else {
-        new_contact->short_nickname = new_contact->nickname;
-    }
+	std::cout << "Enter first name: \n";
+	std::cin >> PB[curr_con_nbr].first_name;
+	std::cout << "Enter last name: \n";
+	std::cin >> PB[curr_con_nbr].last_name;
+	std::cout << "Enter nickname: \n";
+	std::cin >> PB[curr_con_nbr].nick_name;
+	std::cout << "Enter darkest secret: \n";
+	std::cin >> PB[curr_con_nbr].secret;
 
-    std::cout << "Enter darkest secret\n";
-    std::cin >> new_contact->darkest_secret;
-    if ((new_contact->darkest_secret).length() > 10){
-        new_contact->short_darkest_secret = (new_contact->darkest_secret).substr(0, 9);
-        new_contact->short_darkest_secret[10] = ".";
-    }
-    else {
-        new_contact->short_darkest_secret = new_contact->darkest_secret;
-    }
-    free(contact_arr[curr_contact]);
-    contact_arr[curr_contact] = new_contact;
-    curr_contact++;
+	addPn();
+	PB[curr_con_nbr].truncate(1);
+	PB[curr_con_nbr].truncate(2);
+	PB[curr_con_nbr].truncate(3);
+	PB[curr_con_nbr].truncate(4);
+	curr_con_nbr++;
+}
+
+void Phonebook::addPn(){
+	std::string temp_phn;
+	std::cout << "Enter phone number: \n";
+	std::cin >> temp_phn;
+	if (std::all_of(temp_phn.begin(), temp_phn.end(), ::isdigit) == false){
+		std::cout << "phone number should only consist of digits\n";
+		addPn();
+	}
+	else if (temp_phn.length() > 10){
+		std::cout << "phone number too long\n";
+		addPn();
+	}
+	else
+		PB[curr_con_nbr].number = std::stoi(temp_phn);
 }
 
 void Phonebook::SEARCH(){
-    std::cout << "index     |" <<  "first name |" <<  "last name |" <<  "nickname |" << "darkest secret |\n";
-    for (int i = 0; i < 8; i++)
-    {
-        std::cout << i << contact_arr[i->short_first_name] << contact_arr[i->short_last_name] << contact_arr[i->short_nickname] << contact_arr[i->short_darkest_secret] << std::endl;
-    }
-    int index_to_show;
-    std::cout << "Enter index to be displayed\n";
-    std::cin >> index_to_show;
-    if (index_to_show < 8){
-        int i = index_to_show;
-        std::cout << contact_arr[i->short_first_name] << std::endl;
-        std::cout << contact_arr[i->short_last_name] << std::endl;
-        std::cout << contact_arr[i->short_nickname] << std::endl;
-        std::cout << contact_arr[i->short_darkest_secret] << std::endl;
-    }
-    else{
-        std::cout << "Index out of range 0 to 8\n";
-    }
-
-}
-void Phonebook::EXIT(){
-	for (int i = 0; i < 8; i++)
-	{
-		delete contact_arr[1];
+	printPB();
+	int searched_index;
+	std::cout << "Enter the index to display: \n";
+	std::cin >> searched_index;
+	if ((searched_index > 7) || (searched_index < 0)){
+		std::cout << "Index not avalible. Search again.\n";
+		SEARCH();
 	}
+	PB[searched_index].printAll();
 }
 
-Phonebook::~Phonebook(){}
+void Phonebook::printPB(){
+	std::cout << "|-------------------------------------------|\n";
+	std::cout << "| index  |firstName | lastName | nickname   |\n";
+	std::cout << "|-------------------------------------------|\n";
+	for (int i = 0; i < 8; i++){
+		PB[i].printInPb(i);
+		std::cout << "\n";
+	}
+	std::cout << "|-------------------------------------------|\n";
+}
+
+void Phonebook::EXIT(){
+	for (int i = 0; i < 7; i++)
+		delete &PB[i];
+	delete[] &PB;
+}
