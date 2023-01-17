@@ -1,2 +1,2 @@
 make:
-	g++ -Wall -Wextra -Werror -std=c++98 *.cpp -o zombieHorde_out
+	g++ -Wall -Wextra -Werror -std=c++98 *.cpp ../ex00/*.cpp -o main_out

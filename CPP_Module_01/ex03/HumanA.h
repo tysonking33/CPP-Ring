@@ -2,15 +2,15 @@
 #define HUMANA_H
 
 #include "Weapon.h"
+#include <string>
+#include <iostream>
 
 class HumanA{
-    private:
-        std::string name;
-        Weapon *weapon_thing;
-    public:
-        HumanA(std::string new_name, Weapon *new_weapon);
-        attack();
-        ~HumanA();
-}
+public:
+	HumanA(std::string AName, Weapon& newWAP);
+	Weapon *WAPon;
+	std::string name;
+	void attack();
+};
 
 #endif

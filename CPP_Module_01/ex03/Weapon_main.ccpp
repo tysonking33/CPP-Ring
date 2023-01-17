@@ -1,0 +1,11 @@
+#include <iostream>
+#include "Weapon.h"
+
+int main(){
+	Weapon *newWAP = new Weapon();
+	std::cout << "Weapon type is " << newWAP->getType() << std::endl;
+	newWAP->setType("spppoooooon");
+	std::cout << "Weapon type is " << newWAP->getType() << std::endl;
+
+	return 0;
+}

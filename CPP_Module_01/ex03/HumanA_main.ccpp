@@ -1,0 +1,11 @@
+#include "HumanA.h"
+
+int main(){
+	Weapon cock = Weapon("BLLLA");
+	cock.setType("Bllla");
+	HumanA *A = new HumanA("kim", cock);
+	A->attack();
+
+	return 0;
+}
+	
