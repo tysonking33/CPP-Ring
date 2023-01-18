@@ -10,10 +10,13 @@ int main(int argc, char **argv){
 	Replacewurd *rep = new Replacewurd();
 
 	std::ifstream readFile;
-	std::ofstream writeFile;
-
-	std::string contents = rep->Openfile(argv[1], argv[2], argv[3]);
-	rep->myDestFile << contents;
+	std::string fileName, s1, s2;
+	fileName = argv[1];
+	s1 = argv[2];
+	s2 = argv[3];
+	std::ofstream writeFile(fileName + ".replace");
+	std::string contents = rep->Openfile(fileName, s1, s2);
+	writeFile << contents;
 
 	return 0;
 }

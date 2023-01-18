@@ -10,7 +10,7 @@ class Replacewurd{
 		std::string fileName;
 		std::ifstream mySrcFile;
 		std::ofstream myDestFile;
-		std::string Openfile(std::ifstream& fileName, std::string s1, std::string s2);
+		std::string Openfile(std::string& fileName, std::string s1, std::string s2);
 };
 
 #endif
