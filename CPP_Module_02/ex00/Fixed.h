@@ -10,15 +10,10 @@ class Fixed{
 	public:
 		Fixed();
 		Fixed(Fixed *src);
-		Fixed& operator = (const Fixed &obj);
+		Fixed& operator = (Fixed &obj);
 		int getRawBits( void ) const;
 		void setRawBits( int const raw );
 		~Fixed();
-
-		Fixed(int const newConstIntNum);
-		Fixed(float const newConstFloatNum);
-		float toFloat( void ) const;
-		int toInt( void ) const;
 };
-std::ostream & operator << (std::ostream &obj, Fixed const& value);
+
 #endif
