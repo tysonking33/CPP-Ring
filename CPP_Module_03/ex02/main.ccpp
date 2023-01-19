@@ -1,0 +1,7 @@
+#include "FragTrap.h"
+
+int main(){
+	FragTrap *FT = new FragTrap("wow");
+	FT->highFivesGuys();
+	FT->~FragTrap();
+}
