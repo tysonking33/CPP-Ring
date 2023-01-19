@@ -1,0 +1,9 @@
+#include "Cat.h"
+
+int main(){
+	Cat *C = new Cat();
+	C->makeSound();
+	C->Cat::~Cat();
+
+	return 0;
+}
