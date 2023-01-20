@@ -6,7 +6,7 @@
 class Cat: public Animal{
 	public:
 		Cat();
-		void makeSound();
+		void makeSound() const;
 		~Cat();
 };
 

@@ -4,7 +4,7 @@ Cat::Cat(){
 	type = "Cat";
 }
 
-void Cat::makeSound(){
+void Cat::makeSound() const {
 	std::cout << "meowwwwwww\n";
 }
 

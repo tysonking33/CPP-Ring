@@ -4,7 +4,7 @@ Dog::Dog(){
 	type = "Dog";
 }
 
-void Dog::makeSound(){
+void Dog::makeSound() const {
 	std::cout << "wooooof!\n";
 }
 
